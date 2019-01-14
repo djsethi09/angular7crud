@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-body">
+<form [formGroup]="angForm" novalidate>
+  <div class="form-group">
+    <label class="col-md-4">Note title</label>
+    <input type="text" class="form-control" [(ngModel)] = "note.title" formControlName="title" #title/>
+  </div>
+  <div *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)" class="alert alert-danger">
+    <div *ngIf="angForm.controls['title'].errors.required">
+      Title is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4">Note description</label>
+    <input type="text" class="form-control" [(ngModel)] = "note.description" formControlName="description" #description/>
+  </div>
+  <div class="form-group">
+      <button (click)="updateNote(title.value,description.value)"
+      [disabled]="angForm.pristine || angForm.invalid" 
+      class="btn btn-primary">Edit Life Note</button>
+    </div>
+  </form>
+  </div>
+  </div>
